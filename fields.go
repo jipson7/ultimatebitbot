@@ -113,101 +113,91 @@ func projectFields(fieldString string) Board {
 	return fields
 }
 
-func projectMove(macro_index int, micro_index int) string {
+var moveStrings = [81]string{
+	"0 0",
+	"1 0",
+	"2 0",
+	"0 1",
+	"1 1",
+	"2 1",
+	"0 2",
+	"1 2",
+	"2 2",
+	"3 0",
+	"4 0",
+	"5 0",
+	"3 1",
+	"4 1",
+	"5 1",
+	"3 2",
+	"4 2",
+	"5 2",
+	"6 0",
+	"7 0",
+	"8 0",
+	"6 1",
+	"7 1",
+	"8 1",
+	"6 2",
+	"7 2",
+	"8 2",
+	"0 3",
+	"1 3",
+	"2 3",
+	"0 4",
+	"1 4",
+	"2 4",
+	"0 5",
+	"1 5",
+	"2 5",
+	"3 3",
+	"4 3",
+	"5 3",
+	"3 4",
+	"4 4",
+	"5 4",
+	"3 5",
+	"4 5",
+	"5 5",
+	"6 3",
+	"7 3",
+	"8 3",
+	"6 4",
+	"7 4",
+	"8 4",
+	"6 5",
+	"7 5",
+	"8 5",
+	"0 6",
+	"1 6",
+	"2 6",
+	"0 7",
+	"1 7",
+	"2 7",
+	"0 8",
+	"1 8",
+	"2 8",
+	"3 6",
+	"4 6",
+	"5 6",
+	"3 7",
+	"4 7",
+	"5 7",
+	"3 8",
+	"4 8",
+	"5 8",
+	"6 6",
+	"7 6",
+	"8 6",
+	"6 7",
+	"7 7",
+	"8 7",
+	"6 8",
+	"7 8",
+	"8 8"}
+
+func projectMove(index int) string {
 	r := "place_move"
-
-	var projection [9][9]string
-
-	projection[0][0] = "0 0"
-	projection[0][1] = "1 0"
-	projection[0][2] = "2 0"
-	projection[0][3] = "0 1"
-	projection[0][4] = "1 1"
-	projection[0][5] = "2 1"
-	projection[0][6] = "0 2"
-	projection[0][7] = "1 2"
-	projection[0][8] = "2 2"
-
-	projection[1][0] = "3 0"
-	projection[1][1] = "4 0"
-	projection[1][2] = "5 0"
-	projection[1][3] = "3 1"
-	projection[1][4] = "4 1"
-	projection[1][5] = "5 1"
-	projection[1][6] = "3 2"
-	projection[1][7] = "4 2"
-	projection[1][8] = "5 2"
-
-	projection[2][0] = "6 0"
-	projection[2][1] = "7 0"
-	projection[2][2] = "8 0"
-	projection[2][3] = "6 1"
-	projection[2][4] = "7 1"
-	projection[2][5] = "8 1"
-	projection[2][6] = "6 2"
-	projection[2][7] = "7 2"
-	projection[2][8] = "8 2"
-
-	projection[3][0] = "0 3"
-	projection[3][1] = "1 3"
-	projection[3][2] = "2 3"
-	projection[3][3] = "0 4"
-	projection[3][4] = "1 4"
-	projection[3][5] = "2 4"
-	projection[3][6] = "0 5"
-	projection[3][7] = "1 5"
-	projection[3][8] = "2 5"
-
-	projection[4][0] = "3 3"
-	projection[4][1] = "4 3"
-	projection[4][2] = "5 3"
-	projection[4][3] = "3 4"
-	projection[4][4] = "4 4"
-	projection[4][5] = "5 4"
-	projection[4][6] = "3 5"
-	projection[4][7] = "4 5"
-	projection[4][8] = "5 5"
-
-	projection[5][0] = "6 3"
-	projection[5][1] = "7 3"
-	projection[5][2] = "8 3"
-	projection[5][3] = "6 4"
-	projection[5][4] = "7 4"
-	projection[5][5] = "8 4"
-	projection[5][6] = "6 5"
-	projection[5][7] = "7 5"
-	projection[5][8] = "8 5"
-
-	projection[6][0] = "0 6"
-	projection[6][1] = "1 6"
-	projection[6][2] = "2 6"
-	projection[6][3] = "0 7"
-	projection[6][4] = "1 7"
-	projection[6][5] = "2 7"
-	projection[6][6] = "0 8"
-	projection[6][7] = "1 8"
-	projection[6][8] = "2 8"
-
-	projection[7][0] = "3 6"
-	projection[7][1] = "4 6"
-	projection[7][2] = "5 6"
-	projection[7][3] = "3 7"
-	projection[7][4] = "4 7"
-	projection[7][5] = "5 7"
-	projection[7][6] = "3 8"
-	projection[7][7] = "4 8"
-	projection[7][8] = "5 8"
-
-	projection[8][0] = "6 6"
-	projection[8][1] = "7 6"
-	projection[8][2] = "8 6"
-	projection[8][3] = "6 7"
-	projection[8][4] = "7 7"
-	projection[8][5] = "8 7"
-	projection[8][6] = "6 8"
-	projection[8][7] = "7 8"
-	projection[8][8] = "8 8"
-
-	r = r + " " + projection[macro_index][micro_index]
+	r += " " + moveStrings[index]
 	return r
 }

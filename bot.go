@@ -51,9 +51,9 @@ func updateGame(updates []string) {
 }
 
 func printAction(params []string) {
-	// move := RunMonteCarlo(validBoards, &gameBoad)
-	// moveString := projectMove(move)
-	// fmt.Println(moveString)
+	move := RunMonteCarlo(validBoards, &gameBoard)
+	moveString := projectMove(move)
+	fmt.Println(moveString)
 }
 
 func main() {
