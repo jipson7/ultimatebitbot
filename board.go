@@ -22,7 +22,7 @@ func (board *Board) GetValidMoves(validBoardIndices []int) []int {
 	for _, boardIndex := range validBoardIndices {
 		offset := boardIndex * 9
 		for i := offset; i < offset+9; i++ {
-			if board[i] != nil {
+			if board[i] == nil {
 				validBoardMoves = append(validBoardMoves, i)
 			}
 		}
@@ -30,7 +30,7 @@ func (board *Board) GetValidMoves(validBoardIndices []int) []int {
 	return validBoardMoves
 }
 
-func (board *Board) GetBoardIndexOfLast(lastMove int) int {
+func getBoardIndexOfLast(lastMove int) int {
 	return int(math.Mod(float64(lastMove), 9.0))
 }
 
@@ -61,7 +61,7 @@ func (board *Board) IsSubBoardPlayable(subBoardIndex int) bool {
 }
 
 func (board *Board) HasValidMoves(lastMove int) bool {
-	lastBoardIndex := board.GetBoardIndexOfLast(lastMove)
+	lastBoardIndex := getBoardIndexOfLast(lastMove)
 	if board.IsSubBoardPlayable(lastBoardIndex) {
 		return true
 	}
@@ -83,7 +83,7 @@ func (board *Board) GetSubBoardMoves(boardIndex int) []int {
 }
 
 func (board *Board) GetAllMoves(lastMove int) []int {
-	lastBoardIndex := board.GetBoardIndexOfLast(lastMove)
+	lastBoardIndex := getBoardIndexOfLast(lastMove)
 	if board.IsSubBoardPlayable(lastBoardIndex) {
 		return board.GetSubBoardMoves(lastBoardIndex)
 	}

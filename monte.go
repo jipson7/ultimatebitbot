@@ -1,9 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"time"
 )
+
+var debug = false
 
 var TIME_PER_MOVE float64 = 623.0 //Time Per Move in Milliseconds
 
@@ -63,6 +66,10 @@ func RunMonteCarlo(validBoards []int, board *Board) int {
 		if end.Sub(startTime).Seconds()*1000.0 > TIME_PER_MOVE {
 			break
 		}
+	}
+
+	if debug {
+		fmt.Printf("%v games played\n", gamesPlayed)
 	}
 
 	bestScore := math.Inf(-1)
