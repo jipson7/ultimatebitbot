@@ -6,9 +6,9 @@ import (
 	"time"
 )
 
-var debug = false
+var debug = true
 
-var TIME_PER_MOVE float64 = 623.0 //Time Per Move in Milliseconds
+var TIME_PER_MOVE float64 = 793.0 //Time Per Move in Milliseconds
 
 func RunMonteCarlo(validBoards []int, board *Board) int {
 	startTime := time.Now()
@@ -50,14 +50,12 @@ func RunMonteCarlo(validBoards []int, board *Board) int {
 				simulatedBoard.ApplyMove(simulatedMove, previousPlayer)
 			}
 			simulatedWinner := simulatedBoard.GetWinner()
-			if simulatedWinner != nil {
-				if *simulatedWinner {
-					wins[move] += 1.0
-					weightedWins[move] += (1.0 / movesToGameOver)
-				} else {
-					losses[move] += 1.0
-					weightedLosses[move] += (1.0 / movesToGameOver)
-				}
+			if *simulatedWinner {
+				wins[move] += 1.0
+				weightedWins[move] += (1.0 / movesToGameOver)
+			} else {
+				losses[move] += 1.0
+				weightedLosses[move] += (1.0 / movesToGameOver)
 			}
 		}
 

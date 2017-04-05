@@ -45,8 +45,8 @@ func (board *Board) IsSubBoardPlayable(subBoardIndex int) bool {
 		x := subBoard[windex[0]]
 		y := subBoard[windex[1]]
 		z := subBoard[windex[2]]
-		if x != nil && y != nil && z != nil {
-			if *x == *y && *x == *z {
+		if (x != nil) && (y != nil) && (z != nil) {
+			if (*x == *y) && (*x == *z) {
 				return false
 			}
 		}
@@ -78,7 +78,9 @@ func (board *Board) GetSubBoardMoves(boardIndex int) []int {
 	moves := make([]int, 0, 9)
 	offset := boardIndex * 9
 	for move := offset; move < offset+9; move++ {
-		moves = append(moves, move)
+		if board[move] == nil {
+			moves = append(moves, move)
+		}
 	}
 	return moves
 }
@@ -120,8 +122,8 @@ func (board *Board) GetWinner() *bool {
 			x := subBoard[windex[0]]
 			y := subBoard[windex[1]]
 			z := subBoard[windex[2]]
-			if x != nil && y != nil && z != nil {
-				if *x == *y && *x == *z {
+			if (x != nil) && (y != nil) && (z != nil) {
+				if (*x == *y) && (*x == *z) {
 					macroboard[subBoardIndex] = x
 				}
 			}
@@ -133,7 +135,7 @@ func (board *Board) GetWinner() *bool {
 		y := macroboard[windex[1]]
 		z := macroboard[windex[2]]
 		if x != nil && y != nil && z != nil {
-			if *x == *y && *x == *z {
+			if (*x == *y) && (*x == *z) {
 				return x
 			}
 		}
@@ -142,8 +144,20 @@ func (board *Board) GetWinner() *bool {
 }
 
 func (board *Board) Copy() *Board {
-	original := *board
-	copy := original
+	copy := Board{}
+	for i := 0; i < len(board); i++ {
+		if board[i] == nil {
+			copy[i] = nil
+		} else {
+			if *board[i] {
+				b := true
+				copy[i] = &b
+			} else {
+				b := false
+				copy[i] = &b
+			}
+		}
+	}
 	return &copy
 }
 
