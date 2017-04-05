@@ -50,13 +50,16 @@ func RunMonteCarlo(validBoards []int, board *Board) int {
 				simulatedBoard.ApplyMove(simulatedMove, previousPlayer)
 			}
 			simulatedWinner := simulatedBoard.GetWinner()
-			if *simulatedWinner {
-				wins[move] += 1.0
-				weightedWins[move] += (1.0 / movesToGameOver)
-			} else {
-				losses[move] += 1.0
-				weightedLosses[move] += (1.0 / movesToGameOver)
+			if simulatedWinner != nil {
+				if *simulatedWinner {
+					wins[move] += 1.0
+					weightedWins[move] += (1.0 / movesToGameOver)
+				} else {
+					losses[move] += 1.0
+					weightedLosses[move] += (1.0 / movesToGameOver)
+				}
 			}
+
 		}
 
 		end := time.Now()

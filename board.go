@@ -134,7 +134,7 @@ func (board *Board) GetWinner() *bool {
 		x := macroboard[windex[0]]
 		y := macroboard[windex[1]]
 		z := macroboard[windex[2]]
-		if x != nil && y != nil && z != nil {
+		if (x != nil) && (y != nil) && (z != nil) {
 			if (*x == *y) && (*x == *z) {
 				return x
 			}
