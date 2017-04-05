@@ -35,11 +35,10 @@ func RunMonteCarlo(validBoards []int, board *Board) int {
 			simulatedMove := move
 
 			simulatedBoard.ApplyMove(simulatedMove, previousPlayer)
-
 			movesToGameOver += 1.0
 
 			for simulatedBoard.GetWinner() == nil {
-				if simulatedBoard.HasValidMoves(simulatedMove) {
+				if !simulatedBoard.HasValidMoves(simulatedMove) {
 					ties[move] += 1.0
 					break
 				}

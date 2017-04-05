@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"math/rand"
 )
@@ -144,4 +145,15 @@ func (board *Board) Copy() *Board {
 	original := *board
 	copy := original
 	return &copy
+}
+
+func (board *Board) Print() {
+	for _, val := range board {
+		if val != nil {
+			fmt.Printf("%v", *val)
+		} else {
+			fmt.Printf("NIL")
+		}
+	}
+	fmt.Printf("\n")
 }
