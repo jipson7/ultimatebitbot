@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var debug = true
+var debug = false
 
 var TIME_PER_MOVE float64 = 793.0 //Time Per Move in Milliseconds
 
