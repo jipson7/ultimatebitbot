@@ -8,7 +8,7 @@ import (
 
 var debug = false
 
-var TIME_PER_MOVE float64 = 850.0 //Time Per Move in Milliseconds
+var TIME_PER_MOVE float64 = 793.0 //Time Per Move in Milliseconds
 
 func RunMonteCarlo(validBoards []int, board *Board) int {
 	startTime := time.Now()
