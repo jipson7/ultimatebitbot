@@ -3,9 +3,11 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var pid int
@@ -57,6 +59,8 @@ func printAction(params []string) {
 }
 
 func main() {
+
+	rand.Seed(time.Now().UTC().UnixNano())
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
